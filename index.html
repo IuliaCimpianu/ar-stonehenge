@@ -10,11 +10,9 @@
     <body style="margin : 0px; overflow: hidden;">
         <a-scene embedded arjs>
 
-            <a-entity look-controls position="0 0 8">
-                <a-camera id="camera">
-                    <a-cursor></a-cursor>
-                </a-camera>
-            </a-entity>
+            <!-- <a-entity look-controls position="0 0 8"> -->
+              
+            <!-- </a-entity> -->
 
             <a-assets>
                 <img id="soil" src="assets/soil.jpg">
@@ -83,6 +81,10 @@
                 <a-light type="ambient" color="white"></a-light>
 
             </a-marker>
+            
+            <a-camera id="camera">
+                <a-cursor></a-cursor>
+            </a-camera>
 
         </a-scene>
     </body>
