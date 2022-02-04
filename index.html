@@ -3,88 +3,82 @@
 <head>
   <title>Stonehenge</title>
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
   <script src="script.js"></script>
 </head>
-    <body style="margin : 0px; overflow: hidden;">
-        <a-scene embedded arjs>
-
-            <!-- <a-entity look-controls position="0 0 8"> -->
-              
-            <!-- </a-entity> -->
+    <body>
+        <a-scene vr-mode-ui="enabled: false" 
+                 device-orientation-permission-ui="enabled: false">
 
             <a-assets>
                 <img id="soil" src="assets/soil.jpg">
                 <img id="grass" src="assets/grass.jpg">
                 <img id="sky" src="assets/sky.jpg">
                 <img id="spot" src="assets/spot.svg">
-                <a-asset-item id="stones" src="assets/scene.gltf"></a-asset-item>
+                <a-asset-item id="stones" src="/assets/scene.gltf"></a-asset-item>
             </a-assets>
 
-            <a-marker preset="hiro">
-    
-                <a-sky src="#sky"
-                rotation="0 0 0">
-                </a-sky>
+            <a-entity look-controls position="0 0 8">
+                <a-camera id="camera">
+                    <a-cursor></a-cursor>
+                </a-camera>
+            </a-entity>
 
-                <a-box rotation="-70 0 0" 
-                    width="10" 
-                    height="10" 
-                    depth="2" 
-                    material="src: #soil; 
-                                shader: flat;"
+            <a-sky src="#sky"
+               rotation="0 0 0">
+            </a-sky>
+
+            <a-box rotation="-70 0 0" 
+                   width="10" 
+                   height="10" 
+                   depth="2" 
+                   material="src: #soil; 
+                             shader: flat;"
+                   animation="property: scale;
+                            from: 0 0 0;
+                            to: 1 1 1;
+                            dur: 1500;
+                            easing: easeOutQuad;
+                   ">
+            </a-box>
+
+            <a-box position="0 1 0.4" 
+                   rotation="-70 0 0" 
+                   width="10" 
+                   height="10" 
+                   depth="0.2" 
+                   material="src: #grass; 
+                             shader: flat;"
                     animation="property: scale;
-                                from: 0 0 0;
-                                to: 1 1 1;
-                                dur: 1500;
-                                easing: easeOutQuad;
+                            from: 0 0 0;
+                            to: 1 1 1;
+                            dur: 2000;
+                            easing: easeOutQuad;
                     ">
-                </a-box>
+            </a-box>
 
-                <a-box position="0 1 0.4" 
-                    rotation="-70 0 0" 
-                    width="10" 
-                    height="10" 
-                    depth="0.2" 
-                    material="src: #grass; 
-                                shader: flat;"
-                        animation="property: scale;
-                                from: 0 0 0;
-                                to: 1 1 1;
-                                dur: 2000;
-                                easing: easeOutQuad;
-                        ">
-                </a-box>
+            <a-entity gltf-model="#stones"
+                    position="0.65 2.20 -2" 
+                    rotation="20 0 0" 
+                    scale="0.9 0.9 0.9"
+                    visible="false"
+                    animation="property: position;
+                            from: 0.65 0.5 -2;
+                            to: 0.65 2.20 -2;
+                            dur: 2000;
+                            delay: 2000;
+                            easing: easeInOutBack;"
+                    animation__opacity="property: visible; 
+                                        from: false;
+                                        dur: 2000;
+                                        to: true;">
+            </a-entity>
 
-                <a-entity gltf-model="#stones"
-                        position="0.65 2.20 -2" 
-                        rotation="20 0 0" 
-                        scale="0.9 0.9 0.9"
-                        visible="false"
-                        animation="property: position;
-                                from: 0.65 0.5 -2;
-                                to: 0.65 2.20 -2;
-                                dur: 2000;
-                                delay: 2000;
-                                easing: easeInOutBack;"
-                        animation__opacity="property: visible; 
-                                            from: false;
-                                            dur: 2000;
-                                            to: true;">
-                </a-entity>
+            <a-entity info-popups look-at="#camera"></a-entity>
+            <a-entity multiple-hotspots="w: 0.4; h: 0.4" look-at="#camera"></a-entity>
 
-                <a-entity info-popups look-at="#camera"></a-entity>
-                <a-entity multiple-hotspots="w: 0.4; h: 0.4" look-at="#camera"></a-entity>
-
-                <a-light type="point" color="#AAA" position="-3 1 4"></a-light>
-                <a-light type="ambient" color="white"></a-light>
-
-            </a-marker>
-            
-            <a-camera id="camera">
-                <a-cursor></a-cursor>
-            </a-camera>
+            <a-light type="point" color="#AAA" position="-3 1 4"></a-light>
+            <a-light type="ambient" color="white"></a-light>
 
         </a-scene>
     </body>
